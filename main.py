@@ -73,7 +73,7 @@ if __name__ == "__main__":
     # Add arguments to the parser
     parser.add_argument("-bs", "--batch_size", type = int, default = 8, help = "Mini-batch size")
     parser.add_argument("-is", "--inp_im_size", type = int, default = 320, help = "Input image size")
-    parser.add_argument("-dn", "--dataset_name", type = str, default = 'flood', help = "Dataset name for training")
+    parser.add_argument("-dn", "--dataset_name", type = str, default = 'drone', help = "Dataset name for training")
     parser.add_argument("-mn", "--model_name", type = str, default = 'unet', help = "Model name for backbone")
     # parser.add_argument("-mn", "--model_name", type = str, default = 'vit_base_patch16_224', help = "Model name for backbone")
     # parser.add_argument("-mn", "--model_name", type = str, default = 'vgg16_bn', help = "Model name for backbone")

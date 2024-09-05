@@ -1,7 +1,5 @@
 import torch, yaml, sys, os, pickle, timm, argparse
-from models.unet import UNet
-from models.segformer import SegFormer
-from src.utils import get_state_dict, get_preds, visualize
+from src.utils import get_state_dict, get_preds, visualize, load_pretrained_model
 from models.params import get_params
 sys.path.append("./src")
 
@@ -33,26 +31,9 @@ def run(args):
     test_dl = torch.load(f"{args.dls_dir}/{args.dataset_name}_test_dl")
     print(f"Test dataloader is successfully loaded!")
     print(f"There are {len(test_dl)} batches in the test dataloader!")
-
-    model = UNet(in_chs = params["in_chs"], n_cls = params["n_cls"], out_chs = params["out_chs"], depth = params["depth"], up_method = params["up_method"]) if args.model_name == "unet" else \
-        SegFormer(
-                  in_channels=params["in_chs"],
-                  widths=params["widths"],
-                  depths=params["depths"],
-                  all_num_heads=params["all_num_heads"],
-                  patch_sizes=params["patch_sizes"],
-                  overlap_sizes=params["overlap_sizes"],
-                  reduction_ratios=params["reduction_ratios"],
-                  mlp_expansions=params["mlp_expansions"],
-                  decoder_channels=params["decoder_channels"],
-                  scale_factors=params["scale_factors"],
-                  num_classes=params["num_classes"],
-                        )
-    model = model.to(args.device)
-    # load params
-    print("\nLoading the state dictionary...")
-    state_dict = get_state_dict(f"{args.save_model_path}/{args.model_name}_{args.dataset_name}_best.ckpt")
-    model.load_state_dict(state_dict, strict=True)
+    
+    ckpt_path = f"{args.save_model_path}/{args.model_name}_{args.dataset_name}_best.ckpt"
+    model = load_pretrained_model(model_name = args.model_name, params = params, device = args.device, ckpt_path = ckpt_path)
     print(f"The {args.model_name} state dictionary is successfully loaded!\n")
     all_ims, all_preds, all_gts = get_preds(model, test_dl, args.device)
     
@@ -61,10 +42,10 @@ def run(args):
 if __name__ == "__main__":
     
     # Initialize Argument Parser    
-    parser = argparse.ArgumentParser(description = 'Image Classification Training Arguments')
+    parser = argparse.ArgumentParser(description = 'Semantic Segmentation Training Arguments')
     
     # Add arguments to the parser
-    parser.add_argument("-dn", "--dataset_name", type = str, default = 'flood', help = "Dataset name for training")
+    parser.add_argument("-dn", "--dataset_name", type = str, default = 'drone', help = "Dataset name for training")
     parser.add_argument("-mn", "--model_name", type = str, default = 'unet', help = "Model name for backbone")
     parser.add_argument("-d", "--device", type = str, default = 'cuda:1', help = "GPU device name")
     # parser.add_argument("-mn", "--model_name", type = str, default = 'vit_base_patch16_224', help = "Model name for backbone")
