@@ -2,32 +2,20 @@
 
 This repository contains a deep learning (DL)-based artificial intelligence (AI) semantic segmentation model, namely, [SegFormer](https://github.com/NVlabs/SegFormer) and [UNet](https://github.com/milesial/Pytorch-UNet) training using various datasets, such as, [Cells](https://www.kaggle.com/datasets/killa92/medical-cells-image-segmentation), [Flood](https://www.kaggle.com/datasets/killa92/flood-image-segmentation), [Drone](https://www.kaggle.com/datasets/killa92/drone-images-semantic-segmentation) Segmentation datasets.
 
-# Manual on how to use the repo:
+# These are the steps to use this repository:
 
-1. Clone the repo to your local machine using terminal via the following script:
+1. Clone the repository:
 
-```python
-git clone https://github.com/vitasoftAI/Recycle-Park.git
-```
+`git clone https://github.com/bekhzod-olimov/Binary-Semantic-Segmentation.git`
 
-2. Create conda environment from yml file using the following script:
+`cd Binary-Semantic-Segmentation`
 
-Create a virtual environment using txt file:
+2. Create conda environment and activate it using the following script:
+   
+`conda create -n ENV_NAME python=3.10`
 
-- Create a virtual environment:
+`conda activate ENV_NAME`
 
-```python
-conda create -n ENV_NAME python=3.10
-```
+(if necessary) add the created virtual environment to the jupyter notebook (helps with debugging)
 
-- Activate the environment using the following command:
-
-```python
-conda activate ENV_NAME
-```
-
-- Install libraries from the text file:
-
-```python
-pip install -r requirements.txt
-```
+`python -m ipykernel install --user --name ENV_NAME --display-name ENV_NAME`
