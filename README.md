@@ -32,21 +32,40 @@ a) UNet
 python train.py --model_name unet --batch_size 4 devices 2 --epochs 30
 ```
 
-a) SegFormer
+b) SegFormer
 
 ```python
 python train.py --model_name segformer --batch_size 8 devices 3 --epochs 20
 ```
 
 4. Conduct inference using the pre-trained models:
+
+Inference process arguments can be changed based on the following information:
+
+![image](https://github.com/user-attachments/assets/310239f3-b4bb-4533-9928-0fdd6a91c872)
+
+All pretrained models using the aforementioned datasets are publicly available and downloaded during the inference process.
+
 a) UNet
 
 ```python
 python inference.py --model_name unet --save_path inference_results
 ```
 
-a) SegFormer
+b) SegFormer
 
 ```python
 python inference.py --model_name segformer --save_path results
+```
+
+5. Demo using the pretrained AI models:
+
+Demo script arguments can be changed based on the following information:
+
+![image](https://github.com/user-attachments/assets/22a3c7b6-35ae-4174-b04c-183ab712a6bc)
+
+All pretrained models using the aforementioned datasets are publicly available and downloaded during the inference process.
+
+```python
+streamlit run demo.py
 ```
