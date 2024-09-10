@@ -1,4 +1,4 @@
-import cv2, torch, random, numpy as np
+import cv2, os, torch, random, numpy as np
 from collections import OrderedDict as OD
 from PIL import Image
 from torch.nn import functional as F
@@ -92,7 +92,7 @@ def predict(m, path, tfs, data_name, device):
     
     return im, res
 
-def load_pretrained_model(model_name, params, device, ckpt_path):
+def load_pretrained_model(model_name, params, device, ckpt_path, url = None):
     model = UNet(in_chs = params["in_chs"], n_cls = params["n_cls"], out_chs = params["out_chs"], depth = params["depth"], up_method = params["up_method"]) if model_name == "unet" else \
         SegFormer(
                   in_channels=params["in_chs"],
@@ -107,6 +107,22 @@ def load_pretrained_model(model_name, params, device, ckpt_path):
                   scale_factors=params["scale_factors"],
                   num_classes=params["num_classes"],
                         )
+    
+    os.makedirs(ckpt_path.split("/")[0], exist_ok = True)
+    # Download from the checkpoint path
+    if os.path.isfile(ckpt_path): print("Pretrained model is already downloaded!"); pass
+    
+    # If the checkpoint does not exist
+    else: 
+        print("Pretrained checkpoint is not found!")
+        print("Downloading the pretrained checkpoint...")
+        
+        # Get file id
+        file_id = url.split("/")[-2]
+        
+        # Download the checkpoint
+        os.system(f"curl -L 'https://drive.usercontent.google.com/download?id={file_id}&confirm=xxx' -o {ckpt_path}")
+    
     model = model.to(device)
     # load params
     print("\nLoading the state dictionary...")

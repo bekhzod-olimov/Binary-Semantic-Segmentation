@@ -21,6 +21,8 @@ def run(args):
         args   - parsed arguments, argparser object;
         
     """
+    assert args.dataset_name in ["flood", "cells", "drone", "isic"], "Please choose the proper dataset name!"
+    assert args.model_name in ["segformer", "unet"], "Please choose the proper model name!"
     
     checkpoint_path = f"{args.save_model_path}/{args.model_name}_{args.dataset_name}_best.ckpt"
 
@@ -34,7 +36,14 @@ def run(args):
     # Load segmentation model
     params = get_params(args.model_name)
     ckpt_path = f"{args.save_model_path}/{args.model_name}_{args.dataset_name}_best.ckpt"
-    m = load_pretrained_model(model_name = args.model_name, params = params, device = args.device, ckpt_path = ckpt_path)
+    if args.model_name == "unet" and args.dataset_name == "cells": url = "https://drive.google.com/file/d/1m79PNJfWa4pIFGCF3I96ZSEkvfNUm4IS/view?usp=sharing"
+    elif args.model_name == "unet" and args.dataset_name == "flood": url = "https://drive.google.com/file/d/1CqQy3Zczzj7r2jnim8LznlGWZACftCyc/view?usp=sharing"
+    elif args.model_name == "unet" and args.dataset_name == "drone": url = "https://drive.google.com/file/d/1HJZk0rdhs4D-HVPHDQVuPetyjGoerixU/view?usp=sharing"
+    elif args.model_name == "segformer" and args.dataset_name == "flood": url = "https://drive.google.com/file/d/1RBz8bZkIkbYYIf1KdxVPtyrSVFA3IsXE/view?usp=sharing"
+    elif args.model_name == "segformer" and args.dataset_name == "drone": url = "https://drive.google.com/file/d/1KehAHweZeSqSGtJHPv0uO-bYtU4aICJp/view?usp=sharing"
+    elif args.model_name == "segformer" and args.dataset_name == "cells": url = "https://drive.google.com/file/d/1M2D93-SbFCTUYqtO3ufL0HzpSMqFmh5p/view?usp=sharing"
+    
+    m = load_pretrained_model(model_name = args.model_name, params = params, device = args.device, ckpt_path = ckpt_path, url = url)
     print(f"The {args.model_name} state dictionary is successfully loaded!\n")
 
     st.title(f"AI 세그멘테이션 모델 데모")

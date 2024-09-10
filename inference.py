@@ -19,7 +19,8 @@ def run(args):
     
     """
     
-    assert args.dataset_name in ["flood", "cells", "drone", "isic"], "Please choose the proper dataset name"
+    assert args.dataset_name in ["flood", "cells", "drone", "isic"], "Please choose the proper dataset name!"
+    assert args.model_name in ["segformer", "unet"], "Please choose the proper model name!"
     
     # Get train arguments 
     argstr = yaml.dump(args.__dict__, default_flow_style = False)
@@ -33,7 +34,16 @@ def run(args):
     print(f"There are {len(test_dl)} batches in the test dataloader!")
     
     ckpt_path = f"{args.save_model_path}/{args.model_name}_{args.dataset_name}_best.ckpt"
-    model = load_pretrained_model(model_name = args.model_name, params = params, device = args.device, ckpt_path = ckpt_path)
+    
+    if args.model_name == "unet" and args.dataset_name == "cells": url = "https://drive.google.com/file/d/1m79PNJfWa4pIFGCF3I96ZSEkvfNUm4IS/view?usp=sharing"
+    elif args.model_name == "unet" and args.dataset_name == "flood": url = "https://drive.google.com/file/d/1CqQy3Zczzj7r2jnim8LznlGWZACftCyc/view?usp=sharing"
+    elif args.model_name == "unet" and args.dataset_name == "drone": url = "https://drive.google.com/file/d/1HJZk0rdhs4D-HVPHDQVuPetyjGoerixU/view?usp=sharing"
+    elif args.model_name == "segformer" and args.dataset_name == "flood": url = "https://drive.google.com/file/d/1RBz8bZkIkbYYIf1KdxVPtyrSVFA3IsXE/view?usp=sharing"
+    elif args.model_name == "segformer" and args.dataset_name == "drone": url = "https://drive.google.com/file/d/1KehAHweZeSqSGtJHPv0uO-bYtU4aICJp/view?usp=sharing"
+    elif args.model_name == "segformer" and args.dataset_name == "cells": url = "https://drive.google.com/file/d/1M2D93-SbFCTUYqtO3ufL0HzpSMqFmh5p/view?usp=sharing"
+    
+    model = load_pretrained_model(model_name = args.model_name, params = params, device = args.device, ckpt_path = ckpt_path, url = url)
+    
     print(f"The {args.model_name} state dictionary is successfully loaded!\n")
     all_ims, all_preds, all_gts = get_preds(model, test_dl, args.device)
     
@@ -45,7 +55,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = 'Semantic Segmentation Training Arguments')
     
     # Add arguments to the parser
-    parser.add_argument("-dn", "--dataset_name", type = str, default = 'drone', help = "Dataset name for training")
+    parser.add_argument("-dn", "--dataset_name", type = str, default = 'flood', help = "Dataset name for training")
     parser.add_argument("-mn", "--model_name", type = str, default = 'unet', help = "Model name for backbone")
     parser.add_argument("-d", "--device", type = str, default = 'cuda:1', help = "GPU device name")
     # parser.add_argument("-mn", "--model_name", type = str, default = 'vit_base_patch16_224', help = "Model name for backbone")
