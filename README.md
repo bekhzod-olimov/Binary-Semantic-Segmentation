@@ -58,11 +58,23 @@ a) UNet
 python train.py --model_name unet --batch_size 4 devices 2 --epochs 30
 ```
 
+![image](https://github.com/user-attachments/assets/b1444449-8c89-4f8a-a632-268f2676ff6e)
+
+![image](https://github.com/user-attachments/assets/c4b5f5ec-aeb0-41ef-94d0-d8faec0b8c56)
+
+![image](https://github.com/user-attachments/assets/647d7181-5ed4-4e79-b6c4-1b51a7f327a5)
+
 b) SegFormer
 
 ```python
 python train.py --model_name segformer --batch_size 8 devices 3 --epochs 20
 ```
+
+![image](https://github.com/user-attachments/assets/ff4755e9-c367-4139-8d82-bce65a3b60c0)
+
+![image](https://github.com/user-attachments/assets/bb89fd26-2e6b-400a-a2b7-c12cf510b9b8)
+
+![image](https://github.com/user-attachments/assets/e35ca015-919b-419d-85db-58726cc2ab06)
 
 4. Conduct inference using the pre-trained models:
 
