@@ -19,3 +19,22 @@ This repository contains a deep learning (DL)-based artificial intelligence (AI)
 (if necessary) add the created virtual environment to the jupyter notebook (helps with debugging)
 
 `python -m ipykernel install --user --name ENV_NAME --display-name ENV_NAME`
+
+3. Train the pre-defined AI models using the following script:
+
+Train process arguments can be changed based on the following information:
+
+![image](https://github.com/user-attachments/assets/286abcef-d23e-4ff2-9479-b45178fea479)
+
+a) UNet
+
+```python
+python train.py --model_name unet --batch_size 4 devices = 2 --epochs 30
+```
+
+a) SegFormer
+
+```python
+python train.py --model_name segformer --batch_size 4 devices = 2 --epochs 30
+```
+
