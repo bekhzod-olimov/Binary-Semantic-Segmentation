@@ -2,6 +2,20 @@
 
 This repository contains a deep learning (DL)-based artificial intelligence (AI) semantic segmentation model, namely, [SegFormer](https://github.com/NVlabs/SegFormer) and [UNet](https://github.com/milesial/Pytorch-UNet) training using various datasets, such as, [Cells](https://www.kaggle.com/datasets/killa92/medical-cells-image-segmentation), [Flood](https://www.kaggle.com/datasets/killa92/flood-image-segmentation), [Drone](https://www.kaggle.com/datasets/killa92/drone-images-semantic-segmentation) Segmentation datasets.
 
+# Inference results using the pretrained models are as follows:
+
+- Unet Model pretrained on Cells Dataset
+![image](https://github.com/user-attachments/assets/ff4747aa-e24e-4472-bc2d-ded460a0eeb2)
+
+- Unet Model pretrained on Flood Dataset
+![image](https://github.com/user-attachments/assets/ff4747aa-e24e-4472-bc2d-ded460a0eeb2)
+
+- Unet Model pretrained on Drone Dataset
+![image](https://github.com/user-attachments/assets/ff4747aa-e24e-4472-bc2d-ded460a0eeb2)
+
+
+
+
 # These are the steps to use this repository:
 
 1. Clone the repository:
