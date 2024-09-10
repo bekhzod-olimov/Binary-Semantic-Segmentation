@@ -29,12 +29,24 @@ Train process arguments can be changed based on the following information:
 a) UNet
 
 ```python
-python train.py --model_name unet --batch_size 4 devices = 2 --epochs 30
+python train.py --model_name unet --batch_size 4 devices 2 --epochs 30
 ```
 
 a) SegFormer
 
 ```python
-python train.py --model_name segformer --batch_size 4 devices = 2 --epochs 30
+python train.py --model_name segformer --batch_size 8 devices 3 --epochs 20
 ```
 
+4. Conduct inference using the pre-trained models:
+a) UNet
+
+```python
+python inference.py --model_name unet --save_path inference_results
+```
+
+a) SegFormer
+
+```python
+python inference.py --model_name segformer --save_path results
+```
