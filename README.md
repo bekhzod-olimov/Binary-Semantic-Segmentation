@@ -5,13 +5,17 @@ This repository contains a deep learning (DL)-based artificial intelligence (AI)
 # Inference results using the pretrained models are as follows:
 
 - Unet Model pretrained on Cells Dataset
-![image](https://github.com/user-attachments/assets/ff4747aa-e24e-4472-bc2d-ded460a0eeb2)
+
+![cells_unet_preds](https://github.com/user-attachments/assets/cf3314e0-60f1-4da7-992f-a604f95844c2)
 
 - Unet Model pretrained on Flood Dataset
-![image](https://github.com/user-attachments/assets/ff4747aa-e24e-4472-bc2d-ded460a0eeb2)
+
+![flood_unet_preds](https://github.com/user-attachments/assets/ce888acb-b00b-4ca8-a973-2df51d2a275d)
 
 - Unet Model pretrained on Drone Dataset
-![image](https://github.com/user-attachments/assets/ff4747aa-e24e-4472-bc2d-ded460a0eeb2)
+
+![drone_unet_preds](https://github.com/user-attachments/assets/901af34e-9d54-444d-8491-a5f457176284)
+
 
 
 
